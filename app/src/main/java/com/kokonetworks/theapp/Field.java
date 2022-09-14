@@ -16,12 +16,10 @@ class Field extends LinearLayout {
     private final SquareButton[] circles = new SquareButton[9];
     private int currentCircle;
     private Listener listener;
-
     private int score;
     private Mole mole;
 
     private final int ACTIVE_TAG_KEY = 873374234;
-
     public Field(Context context) {
         super(context);
         initializeViews(context);
@@ -76,9 +74,12 @@ class Field extends LinearLayout {
                     boolean active = (boolean) view.getTag(ACTIVE_TAG_KEY);
                     if (active) {
                         score += mole.getCurrentLevel() * 2;
-                    } else {
-                        mole.stopHopping();
                         listener.onGameEnded(score);
+
+                    } else {
+
+                        mole.stopHopping();
+                       // listener.onGameEnded(score);
                     }
                 }
             });
